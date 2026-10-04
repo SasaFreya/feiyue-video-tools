@@ -1,12 +1,12 @@
 # 飞跃视频工具
 
-**[访问官网与操作演示](https://jingwenliu123456-coder.github.io/feiyue-video-tools/)**
+**[访问官网与操作演示](https://sasafreya.github.io/feiyue-video-tools/)**
 
 本地视频批处理工具：**批处理 · 规范命名 · 批量裂变**。本仓库仅提供 **安装包下载**，**不公开源代码**。
 
 ## 下载安装包
 
-👉 **[Releases 发布页](https://github.com/jingwenliu123456-coder/feiyue-video-tools/releases)**（点最新版本下载 zip）
+👉 **[Releases 发布页](https://github.com/SasaFreya/feiyue-video-tools/releases)**（点最新版本下载 zip）
 
 | 平台 | 文件 | 说明 |
 |------|------|------|
@@ -38,4 +38,4 @@ Windows 安装包将随新版本发布在 Releases。当前请留意 Releases �
 
 ## 反馈
 
-[GitHub Issues](https://github.com/jingwenliu123456-coder/feiyue-video-tools/issues)
+[GitHub Issues](https://github.com/SasaFreya/feiyue-video-tools/issues)
