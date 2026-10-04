@@ -31,3 +31,7 @@ $('#open-naming').onclick=()=>switchMode('naming');
 const modeSwitch=switchMode;switchMode=function(m){modeSwitch(m);$('.studio').classList.toggle('secondary-mode',m!=='watermark')};
 const fullReset=$('#reset').onclick;$('#reset').onclick=()=>{fullReset();if(mode==='watermark'){$('#enable-overlay').checked=true;$('#enable-watermark').checked=true;syncFeatures()}};
 syncFeatures();
+
+const themeButton=document.querySelector('#theme-toggle');
+function setTheme(theme){document.documentElement.dataset.theme=theme;const dark=theme==='dark';themeButton.textContent=dark?'☀':'☾';themeButton.setAttribute('aria-pressed',String(dark));themeButton.setAttribute('aria-label',dark?'切换浅色主题':'切换深色主题');try{localStorage.setItem('freya-theme',theme)}catch(e){}}
+let savedTheme='light';try{savedTheme=localStorage.getItem('freya-theme')||'light'}catch(e){}setTheme(savedTheme==='dark'?'dark':'light');themeButton.onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
