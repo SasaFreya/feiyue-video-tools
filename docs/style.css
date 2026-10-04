@@ -10,3 +10,5 @@
 .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.download-button{display:inline-flex;align-items:center;gap:22px;padding:12px 22px;border:1px solid var(--purple);border-radius:8px;color:var(--purple);font-size:14px;background:white}.hero-actions small{flex-basis:100%;font-size:14px;color:var(--muted)}@media(max-width:650px){.hero-actions{margin-top:22px}.hero-bottom .hero-actions .primary{margin-top:0}}
 
 .case-card video.portrait-promo{display:block;width:min(100%,315px);height:auto;max-height:none;aspect-ratio:9/16;object-fit:contain;margin:0 auto;background:#f7f5fc}
+
+.product-overview .case-grid{grid-template-columns:1fr;max-width:960px;margin:0 auto}.product-overview .case-card video{max-height:none;aspect-ratio:16/9}.product-overview .case-card h3{margin-bottom:20px}
