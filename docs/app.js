@@ -38,3 +38,5 @@ let savedTheme='light';try{savedTheme=localStorage.getItem('freya-theme')||'ligh
 
 const agentCopyButton=document.getElementById('copy-agent-prompt');
 agentCopyButton.addEventListener('click',async()=>{const field=document.getElementById('agent-prompt');const status=document.getElementById('agent-copy-status');try{await navigator.clipboard.writeText(field.value);status.textContent='已复制，粘贴给你的 AI 即可';}catch(e){field.focus();field.select();status.textContent='请按 ⌘C 或 Ctrl+C 复制选中的文字';}});
+
+if(location.hash.includes(':~:text=')){const cleanHash=location.hash.split(':~:text=')[0];history.replaceState(history.state,'',location.pathname+location.search+(cleanHash==='#'?'':cleanHash));}
