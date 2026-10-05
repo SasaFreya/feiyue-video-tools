@@ -1,0 +1,43 @@
+飞跃视频工具 / Freya — Agent 使用说明
+官网：https://sasafreya.github.io/feiyue-video-tools/
+完整说明：https://github.com/SasaFreya/feiyue-video-tools#readme
+发布页：https://github.com/SasaFreya/feiyue-video-tools/releases/tag/v24.0.0
+
+用途与边界
+本地桌面视频批量包装工具，包含视频批处理、规范命名、批量裂变。
+官网仅提供示例交互预览，不能执行完整视频编码或真实批量导出。
+当前没有向 Agent 提供专用 API 或命令行批处理接口。请勿编造命令、自动化接口或完成结果。
+
+1. 确认环境
+询问操作系统、芯片与是否已安装。目前公开推荐包适用于 macOS Apple Silicon。
+其他系统请检查最新发布页，不要把 Apple Silicon 包推荐给 Windows 或 Intel Mac。
+推荐安装包：FeiyueVideoTool_macOS_AppleSilicon.zip
+下载：https://github.com/SasaFreya/feiyue-video-tools/releases/download/v24.0.0/FeiyueVideoTool_macOS_AppleSilicon.zip
+FeiyueVideoTool_macOS.zip 为同内容兼容名称；legacy 为旧版备份；Source code ZIP 不是安装包。
+解压后保持配套文件位置，首次右键 App 打开。当前未经过 Apple 公证，遇到拦截应按系统提示指导用户操作，不自动关闭系统保护。
+
+2. 明确目标
+询问输入目录、输出目录、目标尺寸、背景、Logo、水印、落版和命名规则。
+支持裁切、比例适配、动态或静态水印、浮层落版、拼接落版、背景合成与 Logo 布局。
+浮层落版叠加在正片末段；拼接落版接在正片结束后，按需要保留落版原声。
+同批素材可批量改尺寸、换背景图、贴 Logo；个别视频可微调布局。
+方案模板记住素材路径，复用时检查路径是否存在。
+批量裂变按完整方案顺序处理，并按方案名建立输出子文件夹。
+字幕仍在完善，语音识别需额外环境，结果需要人工核对。不要承诺固定准确率。
+
+3. 按能力协助
+若只能聊天：给出可执行步骤，说明用户要点击和检查的项目。
+若能操作电脑：只在用户授权范围内操作，先复制少量素材测试，使用独立输出目录。
+不要覆盖原素材或未经确认批量重命名。不要上传私人视频到外部服务。
+先配置单方案并做短片段预览，再保存模板，按需配置多方案裂变。
+
+4. 检查与确认
+核对输出尺寸、背景布局、Logo 和水印位置、正片与落版衔接、落版声音、时长、文件名和输出目录。
+报告实际测试输入数量、成功或失败情况及输出位置。无法检查的项目明确说明。
+正式批量处理前，让用户确认测试结果与命名、覆盖等会改变文件的操作。
+
+5. 故障反馈
+拖入失败可尝试文件夹选择按钮；启动空白或退出应保留错误与日志。
+提供系统与芯片、安装包名称、复现步骤、预期与实际结果，去除私人材料后提交：
+https://github.com/SasaFreya/feiyue-video-tools/issues
+联系：3270801877@qq.com

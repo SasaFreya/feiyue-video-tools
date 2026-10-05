@@ -195,6 +195,10 @@ flowchart TD
 
 无需为了使用安装包克隆仓库或配置 Python 开发环境。GitHub 自动生成的 “Source code” ZIP/TAR 是仓库文件，不是桌面安装包。
 
+## 让你的 AI 帮你上手
+
+官网提供「复制给我的 AI」按钮。也可以把[Agent 使用说明](https://sasafreya.github.io/feiyue-video-tools/agent-guide.txt)发给助手，让它帮助选择安装包和配置方案；自动操作需助手具备电脑操作能力。
+
 ## 快速上手
 
 ### 先做一套可复用方案
