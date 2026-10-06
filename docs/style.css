@@ -86,3 +86,8 @@ main>.hero{padding-top:32px;padding-bottom:24px}main>.agent-help-wrap{padding-bo
 @media(min-width:701px) and (max-width:1400px){.landing-intro .studio{grid-template-columns:minmax(115px,.7fr) minmax(0,2fr) minmax(115px,.7fr)}}
 @media(max-width:900px){.landing-intro .studio{grid-template-columns:minmax(130px,.6fr) minmax(0,2fr)}.landing-intro .output-sidebar{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.landing-intro .studio.secondary-mode{grid-template-columns:1fr}}
 @media(max-width:700px){.landing-intro .studio{grid-template-columns:minmax(0,1fr)}.landing-intro .output-sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.landing-intro .studio .input-sidebar{min-width:0}}
+
+/* One shared alignment for the product introduction and video. */
+main>.product-overview{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr);gap:48px;align-items:center;padding:36px 5%;background:var(--bg);border-bottom:1px solid var(--line)}
+.overview-copy h2{font-size:30px;line-height:1.4;margin:14px 0 18px;letter-spacing:-.6px}.overview-copy p{font-size:14px;line-height:1.8;color:var(--muted);max-width:340px;margin:0}.overview-video{min-width:0}.overview-video video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;border-radius:12px;background:#19171b}
+@media(max-width:700px){main>.product-overview{grid-template-columns:1fr;gap:20px;padding:28px 5%}.overview-copy h2{font-size:25px}.overview-copy h2 br{display:none}.overview-copy p{max-width:none}}
