@@ -1,4 +1,4 @@
-飞跃视频工具 / Freya — Agent 使用说明
+飞跃视频批处理工具 — Agent 使用说明
 官网：https://sasafreya.github.io/feiyue-video-tools/
 完整说明：https://github.com/SasaFreya/feiyue-video-tools#readme
 发布页：https://github.com/SasaFreya/feiyue-video-tools/releases/tag/v24.0.0
