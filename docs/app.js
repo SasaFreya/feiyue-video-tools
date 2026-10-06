@@ -40,3 +40,27 @@ const agentCopyButton=document.getElementById('copy-agent-prompt');
 agentCopyButton.addEventListener('click',async()=>{const field=document.getElementById('agent-prompt');const status=document.getElementById('agent-copy-status');try{await navigator.clipboard.writeText(field.value);status.textContent='已复制，粘贴给你的 AI 即可';}catch(e){field.focus();field.select();status.textContent='请按 ⌘C 或 Ctrl+C 复制选中的文字';}});
 
 if(location.hash.includes(':~:text=')){const cleanHash=location.hash.split(':~:text=')[0];history.replaceState(history.state,'',location.pathname+location.search+(cleanHash==='#'?'':cleanHash));}
+
+// Guided example: visual preview only; no local files or encoding.
+(()=>{
+ const box=$('#guided-demo');if(!box)return;
+ const play=$('#guide-play'),back=$('#guide-back'),next=$('#guide-next'),exit=$('#guide-exit');
+ let current=-1,timer=null,active=false,auto=false;
+ const steps=[
+  ['选一套方案','加载「飞跃 · 16:9 包装」，复用背景、Logo 和片尾设置。','#demo-template',()=>{switchMode('watermark');$('#demo-template').value='wide';$('#demo-template').onchange();$('#enable-overlay').checked=true;$('#enable-watermark').checked=true;$('#append-ending').checked=true;syncFeatures();setStage('main')}],
+  ['查看包装画面','背景承接竖屏视频，Logo 放在左上方；你可以随时退出演示，自由调整。','#preview',()=>{switchMode('watermark');setStage('main');$('#wm-kind').value='logo';$('#wm-size').value=14;$('#wm-opacity').value=85;pos={x:5,y:8};updateWM()}],
+  ['检查片尾','正片后可以接独立落版。这里播放片尾示例；桌面工具可按设置保留片尾原声。','#ending-settings',()=>{switchMode('watermark');$('#ending-sound').checked=true;setStage('ending');video.muted=true;playVideo().then(()=>{if(active)video.muted=true})}],
+  ['整理文件名','用字段与顺序生成新名称，对照原名确认；这里展示的是示例文件。','#files',()=>{switchMode('naming');names()}],
+  ['查看多方案输出','同一组素材按不同方案输出到各自文件夹。这里仅展示预计数量，不执行编码或导出。','.output-box',()=>{switchMode('fission');fission()}]
+ ];
+ function clear(){clearTimeout(timer);timer=null;document.querySelectorAll('.guide-highlight').forEach(el=>el.classList.remove('guide-highlight'))}
+ function schedule(){if(auto&&current<steps.length-1)timer=setTimeout(()=>show(current+1),6500);else if(current===steps.length-1){auto=false;play.textContent='重新演示 ▶'}}
+ function show(i){clear();active=true;current=i;const [title,desc,target,action]=steps[i];action();const el=$(target);if(el)el.classList.add('guide-highlight');$('#guide-title').textContent=(i+1)+' / '+steps.length+' · '+title;$('#guide-description').textContent=desc;box.querySelectorAll('[data-guide-step]').forEach((b,n)=>{b.classList.toggle('is-current',n===i);if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});back.disabled=i===0;next.disabled=i===steps.length-1;exit.hidden=false;play.textContent=auto?'暂停演示 Ⅱ':'继续演示 ▶';schedule()}
+ function stop(){clear();active=false;auto=false;pauseVideo();syncSound();play.textContent='开始引导演示 ▶';$('#guide-title').textContent='跟着看一次包装流程';$('#guide-description').textContent='选方案、看效果、接片尾，再整理名称与多方案输出。演示会切换示例设置；随时退出即可自己操作。';exit.hidden=true;back.disabled=next.disabled=true;box.querySelectorAll('[data-guide-step]').forEach(b=>{b.classList.remove('is-current');b.removeAttribute('aria-current')})}
+ play.onclick=()=>{if(auto){auto=false;clearTimeout(timer);play.textContent='继续演示 ▶';pauseVideo()}else{auto=true;show(current<0||current===steps.length-1?0:current)}};
+ back.onclick=()=>{auto=false;show(Math.max(0,current-1))};next.onclick=()=>{auto=false;show(Math.min(steps.length-1,current+1))};exit.onclick=stop;
+ box.querySelectorAll('[data-guide-step]').forEach(b=>b.onclick=()=>{auto=false;show(Number(b.dataset.guideStep))});
+ $('#playground').addEventListener('pointerdown',e=>{if(active&&!box.contains(e.target))stop()},true);
+ $('#playground').addEventListener('keydown',e=>{if(e.key==='Escape'&&active)stop();else if(active&&!box.contains(e.target))stop()},true);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&active){auto=false;clearTimeout(timer);pauseVideo();play.textContent='继续演示 ▶'}});
+})();
