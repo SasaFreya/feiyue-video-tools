@@ -80,3 +80,9 @@ main>.hero{padding-top:32px;padding-bottom:24px}main>.agent-help-wrap{padding-bo
 .landing-intro .agent-onboarding .agent-help{border:0;background:transparent;padding:0 0 16px}.landing-intro .agent-onboarding .agent-help>div:first-child .eyebrow,.landing-intro .agent-onboarding .agent-help h2{display:none}
 .landing-intro .workspace-bar{height:auto;min-height:48px;gap:8px;flex-wrap:wrap;padding:8px 12px}.landing-intro .workspace-bar>.guided-demo{flex:1;min-height:0;margin:0;padding:0;justify-content:flex-end;gap:6px}.landing-intro .workspace-bar .guide-demo-copy{display:none}.landing-intro .workspace-bar .guide-demo-controls{gap:3px}.landing-intro .workspace-bar .guide-demo-controls button{padding:4px 5px;font-size:10px}.landing-intro .workspace-bar>.reset{margin-left:0;flex-shrink:0}
 @media(max-width:700px){.landing-intro .workspace-bar>.guided-demo{flex:1;flex-wrap:nowrap}.landing-intro .workspace-bar>#demo-title{font-size:12px}.landing-intro .workspace-bar .guide-demo-controls{flex-wrap:wrap}}
+
+/* Keep all workbench columns inside the available width. */
+.landing-intro .studio>*{min-width:0}.landing-intro .desk-card select,.landing-intro .desk-card input,.landing-intro .path-example{max-width:100%;min-width:0;overflow-wrap:anywhere}.landing-intro .workspace{min-width:0;overflow:hidden}
+@media(min-width:701px) and (max-width:1400px){.landing-intro .studio{grid-template-columns:minmax(115px,.7fr) minmax(0,2fr) minmax(115px,.7fr)}}
+@media(max-width:900px){.landing-intro .studio{grid-template-columns:minmax(130px,.6fr) minmax(0,2fr)}.landing-intro .output-sidebar{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.landing-intro .studio.secondary-mode{grid-template-columns:1fr}}
+@media(max-width:700px){.landing-intro .studio{grid-template-columns:minmax(0,1fr)}.landing-intro .output-sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.landing-intro .studio .input-sidebar{min-width:0}}
