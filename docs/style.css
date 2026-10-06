@@ -32,3 +32,5 @@ html[data-theme=dark] header{background:#241e29ed}html[data-theme=dark] .hero{ba
 
 /* Search text fragments remain navigable without persistent highlight. */
 ::target-text{background-color:transparent;color:inherit}
+
+.tutorial-entry{margin:0;padding:0 5% 24px}.guide-card summary{cursor:pointer;padding:12px 0}.guide-card details{border-bottom:1px solid var(--line)}
