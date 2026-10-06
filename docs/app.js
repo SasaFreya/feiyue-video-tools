@@ -21,7 +21,7 @@ $('#preview-ending').onclick=()=>{setStage('ending');playVideo()};
 $('#video-choice').onchange=()=>setStage('main');
 $('#wm-kind').onchange=updateWM;
 $('#background-ratio').onchange=()=>{const square=$('#background-ratio').value==='square';$('#preview').classList.toggle('square',square);$('.case-background').src='assets/background-'+(square?'square':'wide')+'.jpg';$('#canvas-label').textContent=(square?'1:1 方形':'16:9 横屏')+'背景 · 竖屏视频';place()};
-const resetExisting=$('#reset').onclick;$('#reset').onclick=()=>{resetExisting();if(mode==='watermark'){$('#background-ratio').value='wide';$('#background-ratio').onchange();$('#video-choice').value='01';$('#video-sound').checked=true;$('#append-ending').checked=true;$('#ending-sound').checked=true;setStage('main')}};
+const resetExisting=$('#reset').onclick;$('#reset').onclick=()=>{resetExisting();if(mode==='watermark'){$('#background-ratio').value='wide';$('#background-ratio').onchange();$('#video-choice').value='01';$('#video-sound').checked=true;$('#append-ending').checked=false;$('#ending-sound').checked=true;setStage('main')}};
 
 function syncFeatures(){const overlay=$('#enable-overlay').checked,watermark=$('#enable-watermark').checked,ending=$('#append-ending').checked;$('#overlay-settings').hidden=!overlay;$('#watermark-settings').hidden=!watermark;$('#ending-settings').hidden=!ending;$('#watermark').hidden=!watermark||(stage==='ending'&&$('#wm-layer').value==='video');$('#preview').classList.toggle('no-background',!overlay);$('.processing-chain').textContent='处理链路：'+[overlay?'可视叠加':null,watermark?'静态水印':null,ending?'拼接落版':null].filter(Boolean).join(' → ');$('#preview-log').textContent=ending?'正片播放结束后，接着播放落版文件及其原声。':'仅播放正片。';}
 ['#enable-overlay','#enable-watermark','#append-ending'].forEach(id=>$(id).onchange=syncFeatures);
@@ -29,7 +29,7 @@ $('#demo-template').onchange=()=>{$('#background-ratio').value=$('#demo-template
 const ratioChange=$('#background-ratio').onchange;$('#background-ratio').onchange=()=>{ratioChange();$('#demo-template').value=$('#background-ratio').value;$('.path-example').textContent='输出 / '+($('#background-ratio').value==='wide'?'飞跃-16x9':'Freya-1x1')+'-包装'};
 $('#open-naming').onclick=()=>switchMode('naming');
 const modeSwitch=switchMode;switchMode=function(m){modeSwitch(m);$('.studio').classList.toggle('secondary-mode',m!=='watermark')};
-const fullReset=$('#reset').onclick;$('#reset').onclick=()=>{fullReset();if(mode==='watermark'){$('#enable-overlay').checked=true;$('#enable-watermark').checked=true;syncFeatures()}};
+const fullReset=$('#reset').onclick;$('#reset').onclick=()=>{fullReset();if(mode==='watermark'){$('#enable-overlay').checked=true;$('#enable-watermark').checked=false;syncFeatures()}};
 syncFeatures();
 
 const themeButton=document.querySelector('#theme-toggle');
