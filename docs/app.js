@@ -56,11 +56,14 @@ if(location.hash.includes(':~:text=')){const cleanHash=location.hash.split(':~:t
  function clear(){clearTimeout(timer);timer=null;document.querySelectorAll('.guide-highlight').forEach(el=>el.classList.remove('guide-highlight'))}
  function schedule(){if(auto&&current<steps.length-1)timer=setTimeout(()=>show(current+1),6500);else if(current===steps.length-1){auto=false;play.textContent='重新演示 ▶'}}
  function show(i){clear();active=true;current=i;const [title,desc,target,action]=steps[i];action();const el=$(target);if(el)el.classList.add('guide-highlight');$('#guide-title').textContent=(i+1)+' / '+steps.length+' · '+title;$('#guide-description').textContent=desc;box.querySelectorAll('[data-guide-step]').forEach((b,n)=>{b.classList.toggle('is-current',n===i);if(n===i)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});back.disabled=i===0;next.disabled=i===steps.length-1;exit.hidden=false;play.textContent=auto?'暂停演示 Ⅱ':'继续演示 ▶';schedule()}
- function stop(){clear();active=false;auto=false;pauseVideo();syncSound();play.textContent='开始引导演示 ▶';$('#guide-title').textContent='跟着看一次包装流程';$('#guide-description').textContent='选方案、看效果、接片尾，再整理名称与多方案输出。演示会切换示例设置；随时退出即可自己操作。';exit.hidden=true;back.disabled=next.disabled=true;box.querySelectorAll('[data-guide-step]').forEach(b=>{b.classList.remove('is-current');b.removeAttribute('aria-current')})}
+ function stop(){clear();active=false;auto=false;pauseVideo();syncSound();play.textContent='开始引导演示 ▶';$('#guide-title').textContent='跟着看一次包装流程';$('#guide-description').textContent='选方案、看效果、接片尾，再整理名称与多方案输出。进入工作台后会自动演示一次；随时暂停或退出，自己操作。';exit.hidden=true;back.disabled=next.disabled=true;box.querySelectorAll('[data-guide-step]').forEach(b=>{b.classList.remove('is-current');b.removeAttribute('aria-current')})}
  play.onclick=()=>{if(auto){auto=false;clearTimeout(timer);play.textContent='继续演示 ▶';pauseVideo()}else{auto=true;show(current<0||current===steps.length-1?0:current)}};
  back.onclick=()=>{auto=false;show(Math.max(0,current-1))};next.onclick=()=>{auto=false;show(Math.min(steps.length-1,current+1))};exit.onclick=stop;
  box.querySelectorAll('[data-guide-step]').forEach(b=>b.onclick=()=>{auto=false;show(Number(b.dataset.guideStep))});
  $('#playground').addEventListener('pointerdown',e=>{if(active&&!box.contains(e.target))stop()},true);
  $('#playground').addEventListener('keydown',e=>{if(e.key==='Escape'&&active)stop();else if(active&&!box.contains(e.target))stop()},true);
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&active){auto=false;clearTimeout(timer);pauseVideo();play.textContent='继续演示 ▶'}});
+ // Run once when the guide enters view, without taking focus or scrolling.
+ let started=false;const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)&&!started&&!document.hidden){started=true;observer.disconnect();if(!active&&current<0){auto=true;show(0)}}},{threshold:0.35});observer.observe(box);
+ box.addEventListener('click',()=>{started=true;observer.disconnect()},{once:true});
 })();
